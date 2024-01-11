@@ -2,6 +2,7 @@ package com.example.passkeeper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getStartedButtonClicked(View view) {
-        // Todo: Add code to open the login activity
+        Intent intent = new Intent(this, LogInActivity.class);
+       startActivity(intent);
     }
 }

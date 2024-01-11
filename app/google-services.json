@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "656766483766",
+    "project_id": "passkeeper-2c3b7",
+    "storage_bucket": "passkeeper-2c3b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656766483766:android:19e31daf605cf7cdf70797",
+        "android_client_info": {
+          "package_name": "com.example.passkeeper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC98TVcQgVvG6pNd_4TScyNw6h28nIr1mM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

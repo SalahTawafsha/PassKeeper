@@ -1,16 +1,16 @@
 package com.example.passkeeper;
 
-public class Apps {
+public class App {
    protected String AppName, AppPassword, AppEmail,Tags;
    protected int AppNumber;
 
-    public Apps(String appName, String appPassword, int appNumber, String tags) {
+    public App(String appName, String appPassword, int appNumber, String tags) {
         AppName = appName;
         AppPassword = appPassword;
         AppNumber = appNumber;
         Tags = tags;
     }
-    public Apps(String appName, String appPassword, String appEmail, String tags) {
+    public App(String appName, String appPassword, String appEmail, String tags) {
         AppName = appName;
         AppPassword = appPassword;
         AppEmail = appEmail;

@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">PassKeeper</string>
     <string name="get_started_button">Get Started</string>
+    <string name="welcome">welcome</string>
+    <string name="enter_your_information">enter your information</string>
+    <string name="email_address">email address</string>
+    <string name="password">password</string>
+    <string name="strength_password">strength password</string>
+    <string name="login">login</string>
+    <string name="have_an_account_login">have an account login</string>
+    <string name="user_name">user name</string>
+    <string name="phone_number">phone number</string>
+    <string name="signup">signup</string>
 </resources>

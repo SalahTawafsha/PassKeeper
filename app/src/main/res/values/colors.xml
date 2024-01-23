@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="link_color">#FF6200EE</color>
+    <color name="line_color">#10409B</color>
+    <color name="search_background">#0E244F</color>
+    <color name="transparent">#00000000</color>
+    <color name="email_tag_color">#8B0707</color>
+    <color name="bank_tag_color">#0A9446</color>
+    <color name="web_tag_color">#608FF0</color>
+    <color name="social_media_tag_color">#6F3B7D</color>
+    <color name="app_color">#17096f</color>
 </resources>

@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
-    tools:context=".LogInActivity">
+    tools:context=".controllers.SignUpActivity">
 
     <ImageView
         android:layout_width="188dp"
         android:layout_height="151dp"
         android:background="@drawable/download"
+        android:importantForAccessibility="no"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468"/>
+        app:layout_constraintVertical_bias="0.468" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -57,9 +58,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:autofillHints="no"
                 android:hint="@string/user_name"
                 android:inputType="textPersonName"
-                android:minHeight="48dp"/>
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/phoneEditText"
@@ -67,8 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:hint="@string/phone_number"
+                android:importantForAutofill="no"
                 android:inputType="phone"
-                android:minHeight="48dp"/>
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/emailEditText"
@@ -76,17 +79,54 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:hint="@string/email_address"
+                android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:minHeight="48dp"/>
+                android:minHeight="48dp" />
 
-            <EditText
-                android:id="@+id/passwordEditText"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:minHeight="48dp"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:hint="@string/password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:maxLength="12"
+                    android:minHeight="48dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/closedEyeButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/closed_eye"
+                    android:onClick="showPasswordButtonClicked"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:importantForAccessibility="no" />
+
+                <ImageButton
+                    android:id="@+id/openedEyeButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone"
+                    android:background="@drawable/opened_eye"
+                    android:onClick="showPasswordButtonClicked"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:importantForAccessibility="no" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/strengthTextView"
@@ -102,17 +142,16 @@
                 android:layout_height="59dp"
                 android:layout_marginStart="80dp"
                 android:backgroundTint="#0E244F"
-
+                android:onClick="signUpButtonClicked"
                 android:text="@string/signup"
                 android:textSize="20sp"
-
                 app:strokeColor="#6193F6"
                 app:strokeWidth="3dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/have_an_account_login"
+                android:text="@string/have_an_account"
                 android:textAlignment="center"
                 android:textSize="14sp" />
 

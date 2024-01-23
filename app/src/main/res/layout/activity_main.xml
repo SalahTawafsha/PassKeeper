@@ -7,10 +7,10 @@
     android:background="@drawable/background_image"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".controllers.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/icon"
         android:layout_width="272dp"
         android:layout_height="288dp"
         android:layout_marginBottom="20dp"
@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/image" />
+        app:srcCompat="@drawable/icon"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/textView5"
@@ -28,10 +29,10 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="57dp"
         android:fontFamily="@font/galdeano"
-        android:text="Keep your passwords Safe"
+        android:text="@string/keep_your_passwords_safe"
         android:textAllCaps="true"
         android:textColor="#DBDBDB"
-        android:textSize="17dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/get_started_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,11 +62,11 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="413dp"
         android:fontFamily="@font/merriweather"
-        android:text="PassKeeper"
+        android:text="@string/app_name"
         android:textColor="#FFFFFF"
-        android:textSize="40dp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/icon"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

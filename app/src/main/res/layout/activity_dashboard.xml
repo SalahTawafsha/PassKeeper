@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboardActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".controllers.DashboardActivity">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/icon" />
+
+    <TextView
+        android:id="@+id/welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/galdeano"
+        android:text="@string/welcome_back"
+        android:textColor="#DBDBDB"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/galdeano"
+        android:text="@string/user_name"
+        android:textAllCaps="false"
+        android:textColor="#DBDBDB"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/welcome_message" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/notification_icon"
+        android:importantForAccessibility="no"
+        android:onClick="openNotifications"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="350dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/line_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/user_name" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/search_rounded_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/horizontal_line" />
+
+
+    <TextView
+        android:id="@+id/saved_passwords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/galdeano"
+        android:text="@string/saved_passwords"
+        android:textAllCaps="false"
+        android:textColor="#DBDBDB"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/searchView"
+        app:layout_constraintTop_toBottomOf="@id/searchView" />
+
+
+    <ImageButton
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/exclamation_marke"
+        android:importantForAccessibility="no"
+        android:onClick="openTutorial"
+        app:layout_constraintStart_toEndOf="@id/saved_passwords"
+        app:layout_constraintTop_toBottomOf="@id/searchView" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="350dp"
+        android:layout_height="468dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/saved_passwords" />
+
+    <View
+        android:id="@+id/bottom_bar"
+        android:layout_width="258dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bottom_bar_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="1.0" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/home_icon"
+        android:onClick="openHomePage"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_bar"
+        app:layout_constraintLeft_toLeftOf="@id/bottom_bar"
+        app:layout_constraintTop_toTopOf="@id/bottom_bar"
+        android:importantForAccessibility="no" />
+
+    <ImageButton
+        android:id="@+id/addPasswordButton"
+        android:layout_width="72dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/add_icon"
+        android:importantForAccessibility="no"
+        android:onClick="openAddPassword"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/profileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/profile_icon"
+        android:onClick="openProfilePage"
+        app:layout_constraintEnd_toEndOf="@id/bottom_bar"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_bar"
+        app:layout_constraintTop_toTopOf="@id/bottom_bar"
+        android:importantForAccessibility="no" />
+</androidx.constraintlayout.widget.ConstraintLayout>

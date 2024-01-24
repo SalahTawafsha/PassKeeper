@@ -1,6 +1,8 @@
 package com.example.passkeeper.models;
 
-import android.net.Uri;
+
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +14,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.passkeeper.R;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.example.passkeeper.controllers.AppInfoPage;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
 import java.util.List;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
@@ -44,31 +44,39 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
 
         App app = apps.get(position);
 
-        View view = cardView.findViewById(R.id.app_card_view);
-        view.setBackgroundResource(getBackgroundColor(app));
-
         ImageView imageView = cardView.findViewById(R.id.app_icon_view);
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(app.getImageUrl());
+        Log.e("AppAdapter", app.getImageUrl());
+        Picasso.get().load(app.getImageUrl()).into(imageView);
 
-        storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
-            // Got the download URL for the image
-            Picasso.get().load(Uri.fromFile(new File(app.getImageUrl()))).into(imageView);
-
-        }).addOnFailureListener(e -> {
-            // Handle any errors
-
-        });
 
         TextView appName = cardView.findViewById(R.id.app_name_view);
         appName.setText(app.getName());
 
         TextView appTag = cardView.findViewById(R.id.app_tag_name_view);
-        appTag.setText(app.getTag().toString());
+        appTag.setText(getTag(app));
 
+        View appTagView = cardView.findViewById(R.id.app_tag_view);
+        appTagView.setBackgroundResource(getBackgroundColor(app));
 
         cardView.setOnClickListener(v -> {
-            // TODO: show app info
+            Intent intent = new Intent(cardView.getContext(), AppInfoPage.class);
+            intent.putExtra("app", position);
+            cardView.getContext().startActivity(intent);
         });
+    }
+
+    private String getTag(App app) {
+        switch (app.getTag()) {
+            case SOCIAL_MEDIA:
+                return "Social Media";
+            case WEBSITE:
+                return "Website";
+            case EMAIL:
+                return "Email Account";
+            case BANK:
+                return "Bank Account";
+        }
+        return "";
     }
 
     private int getBackgroundColor(App app) {

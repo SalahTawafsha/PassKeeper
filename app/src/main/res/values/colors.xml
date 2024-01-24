@@ -11,4 +11,8 @@
     <color name="web_tag_color">#608FF0</color>
     <color name="social_media_tag_color">#6F3B7D</color>
     <color name="app_color">#17096f</color>
+    <color name="green">#2CC12C</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#FFA500</color>
+    <color name="white_hint">#AEBABF</color>
 </resources>

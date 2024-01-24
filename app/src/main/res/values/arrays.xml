@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="app_tags_options" >
+        <item>Social Media</item>
+        <item>Email Account</item>
+        <item>Bank Account</item>
+        <item>Website</item>
+    </string-array>
+</resources>

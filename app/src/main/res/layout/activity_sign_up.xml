@@ -96,7 +96,6 @@
                     android:hint="@string/password"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
-                    android:maxLength="12"
                     android:minHeight="48dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -107,34 +106,49 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/closed_eye"
+                    android:background="@drawable/black_closed_eye"
+                    android:importantForAccessibility="no"
                     android:onClick="showPasswordButtonClicked"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:importantForAccessibility="no" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/openedEyeButton"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginEnd="16dp"
-                    android:visibility="gone"
-                    android:background="@drawable/opened_eye"
+                    android:background="@drawable/black_opened_eye"
+                    android:importantForAccessibility="no"
                     android:onClick="showPasswordButtonClicked"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:importantForAccessibility="no" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/strengthTextView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
-                android:text="@string/strength_password"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/strengthTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/strength_password"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/passwordStrengthTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/red"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/SignUpButton"
@@ -147,14 +161,6 @@
                 android:textSize="20sp"
                 app:strokeColor="#6193F6"
                 app:strokeWidth="3dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/have_an_account"
-                android:textAlignment="center"
-                android:textSize="14sp" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

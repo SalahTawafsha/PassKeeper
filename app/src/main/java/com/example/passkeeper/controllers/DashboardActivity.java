@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,15 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.passkeeper.R;
-import com.example.passkeeper.models.App;
 import com.example.passkeeper.models.AppAdapter;
-import com.example.passkeeper.models.Notification;
 import com.example.passkeeper.models.User;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity {
     private RecyclerView list;
@@ -40,9 +35,13 @@ public class DashboardActivity extends AppCompatActivity {
         list = findViewById(R.id.recyclerView);
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         loadCardView();
-
-
     }
 
     private void loadCardView() {
@@ -52,25 +51,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         fireStore.collection("users").document(sharedPref.getString("logInEmail", "")).get()
                 .addOnSuccessListener(documentSnapshot -> {
-
-                    List<App> apps = new ArrayList<>();
-                    for (Object app : (List<Object>) documentSnapshot.get("apps")) {
-                        HashMap<String, Object> appMap = (HashMap<String, Object>) app;
-                        apps.add(App.fromMap(appMap));
-                    }
-
-                    List<Notification> notifications = new ArrayList<>();
-                    for (Object notification : (List<Object>) documentSnapshot.get("notifications")) {
-                        HashMap<String, Object> notificationMap = (HashMap<String, Object>) notification;
-
-                        notifications.add(new Notification((String) notificationMap.get("notification")));
-                    }
-
-                    String userEmail = documentSnapshot.getString("email");
-                    String userUserName = documentSnapshot.getString("userName");
-                    String userPhoneNumber = documentSnapshot.getString("phoneNumber");
-
-                    User user = new User(userEmail, userUserName, userPhoneNumber, apps, notifications);
+                    User user = User.fromMap(documentSnapshot);
 
                     userName.setText(user.getUserName());
                     AppAdapter adapter = new AppAdapter(user.getApps());
@@ -82,12 +63,19 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void openAddPassword(View view) {
-    }
-
-    public void openHomePage(View view) {
+        Intent intent = new Intent(this, AddPasswordActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        this.finish();
     }
 
     public void openProfilePage(View view) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        this.finish();
     }
 
     public void openTutorial(View view) {

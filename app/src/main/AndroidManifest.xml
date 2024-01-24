@@ -11,9 +11,16 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.PassKeeper"
+        android:windowSoftInputMode="stateVisible|adjustResize"
         tools:targetApi="31">
         <activity
-            android:name=".controllers.AppInfo_Page"
+            android:name=".controllers.AddPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.AppInfoPage"
             android:exported="false" />
         <activity
             android:name=".controllers.DashboardActivity"
@@ -26,17 +33,17 @@
             android:exported="false" />
         <activity
             android:name=".controllers.MainActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-    <meta-data
-        android:name="preloaded_fonts"
-        android:resource="@array/preloaded_fonts" />
-</application>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
 
-    </manifest>
+</manifest>

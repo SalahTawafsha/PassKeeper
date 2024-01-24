@@ -1,14 +1,19 @@
 package com.example.passkeeper.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.passkeeper.R;
+import com.example.passkeeper.models.PasswordStrengthChecker;
 import com.example.passkeeper.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private ImageButton openedEyeButton;
     private ImageButton closedEyeButton;
+    private TextView passwordStrengthTextView;
     private final FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
@@ -34,6 +40,9 @@ public class SignUpActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         openedEyeButton = findViewById(R.id.openedEyeButton);
         closedEyeButton = findViewById(R.id.closedEyeButton);
+        passwordStrengthTextView = findViewById(R.id.passwordStrengthTextView);
+
+        passwordEditText.addTextChangedListener(new MyTextWatcher());
     }
 
     public void signUpButtonClicked(View view) {
@@ -83,7 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         // validate password length is at least 8 characters
-        if (passwordEditText.getText().toString().length() < 8) {
+        if (passwordStrengthTextView.getText().toString().equals("Weak")) {
             Toast.makeText(this, "Password must be at least 8 characters.", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -100,6 +109,42 @@ public class SignUpActivity extends AppCompatActivity {
             openedEyeButton.setVisibility(View.GONE);
             closedEyeButton.setVisibility(View.VISIBLE);
             passwordEditText.setInputType(129);
+        }
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String password = passwordEditText.getText().toString();
+            PasswordStrengthChecker.PasswordStrengthStatus passwordStraight =
+                    PasswordStrengthChecker.checkPasswordStrength(password);
+
+            switch (passwordStraight) {
+                case WEAK:
+                    passwordStrengthTextView.setText(R.string.weak_password_strength);
+                    passwordStrengthTextView.setTextColor(ContextCompat.getColor(SignUpActivity.this, R.color.red));
+                    break;
+                case MEDIUM:
+                    passwordStrengthTextView.setText(R.string.medium_password_strength);
+                    passwordStrengthTextView.setTextColor(ContextCompat.getColor(SignUpActivity.this, R.color.orange));
+                    break;
+                case STRONG:
+                    passwordStrengthTextView.setText(R.string.strong_password_strength);
+                    passwordStrengthTextView.setTextColor(ContextCompat.getColor(SignUpActivity.this, R.color.green));
+                    break;
+
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
         }
     }
 }

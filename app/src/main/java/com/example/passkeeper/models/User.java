@@ -1,7 +1,10 @@
 package com.example.passkeeper.models;
 
 
+import com.google.firebase.firestore.DocumentSnapshot;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class User {
@@ -23,6 +26,27 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.apps = apps;
         this.notifications = notifications;
+    }
+
+    public static User fromMap(DocumentSnapshot documentSnapshot) {
+        List<App> apps = new ArrayList<>();
+        for (Object app : (List<Object>) documentSnapshot.get("apps")) {
+            HashMap<String, Object> appMap = (HashMap<String, Object>) app;
+            apps.add(App.fromMap(appMap));
+        }
+
+        List<Notification> notifications = new ArrayList<>();
+        for (Object notification : (List<Object>) documentSnapshot.get("notifications")) {
+            HashMap<String, Object> notificationMap = (HashMap<String, Object>) notification;
+
+            notifications.add(new Notification((String) notificationMap.get("notification")));
+        }
+
+        String userEmail = documentSnapshot.getString("email");
+        String userUserName = documentSnapshot.getString("userName");
+        String userPhoneNumber = documentSnapshot.getString("phoneNumber");
+
+        return new User(userEmail, userUserName, userPhoneNumber, apps, notifications);
     }
 
     public String getEmail() {

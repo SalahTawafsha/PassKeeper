@@ -17,8 +17,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:importantForAccessibility="no"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon" />
 
     <TextView
@@ -136,24 +136,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:background="@drawable/home_icon"
-        android:onClick="openHomePage"
+        android:background="@drawable/add_icon"
+        android:importantForAccessibility="no"
+        android:onClick="openAddPassword"
         app:layout_constraintBottom_toBottomOf="@id/bottom_bar"
-        app:layout_constraintLeft_toLeftOf="@id/bottom_bar"
-        app:layout_constraintTop_toTopOf="@id/bottom_bar"
-        android:importantForAccessibility="no" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottom_bar" />
 
     <ImageButton
         android:id="@+id/addPasswordButton"
         android:layout_width="72dp"
         android:layout_height="71dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/add_icon"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/opened_home_icon"
         android:importantForAccessibility="no"
-        android:onClick="openAddPassword"
         app:layout_constraintBottom_toBottomOf="@+id/bottom_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintLeft_toLeftOf="@id/bottom_bar" />
 
     <ImageButton
         android:id="@+id/profileButton"
@@ -161,9 +161,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:background="@drawable/profile_icon"
+        android:importantForAccessibility="no"
         android:onClick="openProfilePage"
-        app:layout_constraintEnd_toEndOf="@id/bottom_bar"
         app:layout_constraintBottom_toBottomOf="@id/bottom_bar"
-        app:layout_constraintTop_toTopOf="@id/bottom_bar"
-        android:importantForAccessibility="no" />
+        app:layout_constraintEnd_toEndOf="@id/bottom_bar"
+        app:layout_constraintTop_toTopOf="@id/bottom_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

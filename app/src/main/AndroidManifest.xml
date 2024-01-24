@@ -17,13 +17,13 @@
             android:name=".controllers.AddPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".FingerPrintAuthentication"
+            android:name=".controllers.FingerprintAuthActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyNumber"
+            android:name=".controllers.VerifyNumberActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyEmail"
+            android:name=".controllers.VerifyEmailActivity"
             android:exported="false" />
         <activity
             android:name=".controllers.ProfileActivity"

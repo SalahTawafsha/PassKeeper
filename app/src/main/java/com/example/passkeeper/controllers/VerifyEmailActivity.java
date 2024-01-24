@@ -1,10 +1,12 @@
-package com.example.passkeeper;
+package com.example.passkeeper.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class VerifyEmail extends AppCompatActivity {
+import com.example.passkeeper.R;
+
+public class VerifyEmailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

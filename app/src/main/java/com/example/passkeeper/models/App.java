@@ -14,9 +14,6 @@ public class App {
     private final Tag tag;
 
     public App(String name, String password, String email, Tag tag, String imageUrl) {
-        Log.e("App", "App encrypt: " + password);
-        password = StringRotationCipher.encrypt(password, name.length() % 8 != 0 ? name.length() % 8 : 1);
-        Log.e("App", "App encrypt: " + password);
         this.password = password;
         this.name = name;
         this.emailOrPhoneNumber = email;

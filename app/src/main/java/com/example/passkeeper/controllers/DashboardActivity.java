@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.passkeeper.R;
+import com.example.passkeeper.models.App;
 import com.example.passkeeper.models.AppAdapter;
 import com.example.passkeeper.models.User;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -54,6 +56,10 @@ public class DashboardActivity extends AppCompatActivity {
                     User user = User.fromMap(documentSnapshot);
 
                     userName.setText(user.getUserName());
+                    for (App app :
+                            user.getApps()) {
+                        Log.e("App password", app.getPassword());
+                    }
                     AppAdapter adapter = new AppAdapter(user.getApps());
                     list.setAdapter(adapter);
                 });

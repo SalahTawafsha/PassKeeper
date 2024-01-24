@@ -17,6 +17,15 @@
             android:name=".controllers.AddPasswordActivity"
             android:exported="false" />
         <activity
+            android:name=".FingerPrintAuthentication"
+            android:exported="false" />
+        <activity
+            android:name=".VerifyNumber"
+            android:exported="false" />
+        <activity
+            android:name=".VerifyEmail"
+            android:exported="false" />
+        <activity
             android:name=".controllers.ProfileActivity"
             android:exported="false" />
         <activity

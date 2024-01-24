@@ -36,4 +36,6 @@
     <string name="email_or_phone_number">Email or phone number</string>
     <string name="change_password">Change password</string>
     <string name="log_out">Log out</string>
+    <string name="have_an_account_login">have an account login</string>
+    <string name="continueButton">Continue</string>
 </resources>

@@ -6,35 +6,42 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.PassKeeper"
+        android:windowSoftInputMode="stateVisible|adjustResize"
         tools:targetApi="31">
         <activity
-            android:name=".FingerPrintAuthentication"
+            android:name=".controllers.AddPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyNumber"
+            android:name=".controllers.FingerprintAuthActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyEmail"
+            android:name=".controllers.VerifyNumberActivity"
             android:exported="false" />
         <activity
-            android:name=".AppInfo_Page"
+            android:name=".controllers.VerifyEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".MainPage"
+            android:name=".controllers.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".LogInActivity"
+            android:name=".controllers.AppInfoPage"
             android:exported="false" />
         <activity
-            android:name=".logIn"
+            android:name=".controllers.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".controllers.LogInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

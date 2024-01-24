@@ -1,10 +1,12 @@
-package com.example.passkeeper;
+package com.example.passkeeper.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class FingerPrintAuthentication extends AppCompatActivity {
+import com.example.passkeeper.R;
+
+public class FingerprintAuthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

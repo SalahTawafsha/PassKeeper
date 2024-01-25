@@ -23,10 +23,14 @@ import com.example.passkeeper.models.AppAdapter;
 import com.example.passkeeper.models.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DashboardActivity extends AppCompatActivity {
     private RecyclerView list;
     private TextView userName;
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+    private List<App> apps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class DashboardActivity extends AppCompatActivity {
         fireStore.collection("users").document(sharedPref.getString("logInEmail", "")).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     User user = User.fromMap(documentSnapshot);
+                    apps = user.getApps();
 
                     userName.setText(user.getUserName());
                     for (App app :
@@ -66,6 +71,15 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void openNotifications(View view) {
+        List<App> oldPasswordApps = new ArrayList<>();
+        for (App app : apps) {
+            if (app.isOldPassword()) {
+                oldPasswordApps.add(app);
+            }
+
+        }
+
+        // ToDo: Open notifications page and show oldPasswordApps list with message
     }
 
     public void openAddPassword(View view) {

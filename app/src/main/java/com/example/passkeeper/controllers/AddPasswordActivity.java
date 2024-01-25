@@ -27,6 +27,7 @@ import com.example.passkeeper.models.PasswordGenerator;
 import com.example.passkeeper.models.PasswordStrengthChecker;
 import com.example.passkeeper.models.StringRotationCipher;
 import com.example.passkeeper.models.User;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddPasswordActivity extends AppCompatActivity {
@@ -81,7 +82,7 @@ public class AddPasswordActivity extends AppCompatActivity {
             App.Tag tag = getTag();
             String link = getLink(appName, tag);
 
-            App newApp = new App(appName, password, email, tag, link);
+            App newApp = new App(appName, password, email, tag, link, new Timestamp(new java.util.Date()));
 
             SharedPreferences sharedPref = getSharedPreferences(
                     getString(R.string.login)

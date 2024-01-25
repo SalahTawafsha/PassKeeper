@@ -10,43 +10,44 @@ import java.util.List;
 public class User {
     private final String email, userName, phoneNumber;
     private final List<App> apps;
-    private final List<Notification> notifications;
 
     public User(String email, String userName, String phoneNumber) {
         this.email = email;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.apps = new ArrayList<>();
-        this.notifications = new ArrayList<>();
     }
 
-    public User(String email, String userName, String phoneNumber, List<App> apps, List<Notification> notifications) {
+    public User(String email, String userName, String phoneNumber, List<App> apps) {
         this.email = email;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
         this.apps = apps;
-        this.notifications = notifications;
     }
 
     public static User fromMap(DocumentSnapshot documentSnapshot) {
         List<App> apps = new ArrayList<>();
-        for (Object app : (List<Object>) documentSnapshot.get("apps")) {
-            HashMap<String, Object> appMap = (HashMap<String, Object>) app;
-            apps.add(App.fromMap(appMap));
-        }
 
-        List<Notification> notifications = new ArrayList<>();
-        for (Object notification : (List<Object>) documentSnapshot.get("notifications")) {
-            HashMap<String, Object> notificationMap = (HashMap<String, Object>) notification;
+        // Check if the "apps" field exists and is not null
+        Object appsObject = documentSnapshot.get("apps");
+        if (appsObject instanceof List<?>) {
+            List<?> appsList = (List<?>) appsObject;
 
-            notifications.add(new Notification((String) notificationMap.get("notification")));
+            for (Object app : appsList) {
+                if (app instanceof HashMap<?, ?>) {
+                    // Suppress unchecked cast because we know that the HashMap is of type <String, Object> by firebase
+                    @SuppressWarnings("unchecked")
+                    HashMap<String, Object> appMap = (HashMap<String, Object>) app;
+                    apps.add(App.fromMap(appMap));
+                }
+            }
         }
 
         String userEmail = documentSnapshot.getString("email");
         String userUserName = documentSnapshot.getString("userName");
         String userPhoneNumber = documentSnapshot.getString("phoneNumber");
 
-        return new User(userEmail, userUserName, userPhoneNumber, apps, notifications);
+        return new User(userEmail, userUserName, userPhoneNumber, apps);
     }
 
     public String getEmail() {
@@ -63,10 +64,6 @@ public class User {
 
     public List<App> getApps() {
         return apps;
-    }
-
-    public List<Notification> getNotifications() {
-        return notifications;
     }
 
 }

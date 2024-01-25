@@ -38,4 +38,8 @@
     <string name="log_out">Log out</string>
     <string name="have_an_account_login">have an account login</string>
     <string name="continueButton">Continue</string>
+    <string name="fingerprint_sensor_to_login">fingerprint sensor to login</string>
+    <string name="place_your_finger_on">Place your finger on</string>
+    <string name="verify_by_email">verify by email</string>
+    <string name="or">Or,</string>
 </resources>

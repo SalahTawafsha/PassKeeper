@@ -51,7 +51,7 @@ public class LogInActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     editor.putString("logInEmail", emailEditText.getText().toString());
                     editor.apply();
-                    Intent intent = new Intent(this, DashboardActivity.class);
+                    Intent intent = new Intent(this, VerifyNumberActivity.class);
                     startActivity(intent);
                 } else {
                     emailEditText.setError("Email or password is incorrect");

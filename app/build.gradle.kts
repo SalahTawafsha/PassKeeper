@@ -40,5 +40,10 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    implementation ("com.google.firebase:firebase-auth:22.3.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation ("androidx.biometric:biometric:1.1.0")
+    implementation ("joda-time:joda-time:2.10.14")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.google.android.gms:play-services-auth-api-phone:18.0.1")
 }

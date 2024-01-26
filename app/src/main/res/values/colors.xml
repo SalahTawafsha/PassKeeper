@@ -15,4 +15,5 @@
     <color name="red">#FF0000</color>
     <color name="orange">#FFA500</color>
     <color name="white_hint">#AEBABF</color>
+    <color name="transparent_black">#C6000000</color>
 </resources>

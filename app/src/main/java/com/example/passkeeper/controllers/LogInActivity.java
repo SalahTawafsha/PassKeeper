@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.passkeeper.R;
 import com.example.passkeeper.models.User;
@@ -30,7 +31,7 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-       // auth.sendPasswordResetEmail()
+        // auth.sendPasswordResetEmail()
 
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -83,7 +84,7 @@ public class LogInActivity extends AppCompatActivity {
         }
 
     }
-    
+
 
     private boolean validate() {
         return !emailEditText.getText().toString().isEmpty() && !passwordEditText.getText().toString().isEmpty();
@@ -104,5 +105,17 @@ public class LogInActivity extends AppCompatActivity {
             closedEyeButton.setVisibility(View.VISIBLE);
             passwordEditText.setInputType(129);
         }
+    }
+
+    public void forgotPasswordButtonClicked(View view) {
+        String email = emailEditText.getText().toString().trim();
+        // validate email regular expression
+        if (email.matches(getString(R.string.email_regular_expression))) {
+            auth.sendPasswordResetEmail(email);
+            Toast.makeText(this, "Reset link sent to your email.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Email is not valid.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

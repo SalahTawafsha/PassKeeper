@@ -39,4 +39,8 @@
     <string name="have_an_account_login">have an account login</string>
     <string name="continueButton">Continue</string>
     <string name="deletebutton">Delete App</string>
+    <string name="Change_password">Change Password</string>
+    <string name="OldPassword">Old password </string>
+    <string name="NewPassword">New password </string>
+    <string name="save">Save </string>
 </resources>

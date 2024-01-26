@@ -60,7 +60,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
 
         cardView.setOnClickListener(v -> {
             Intent intent = new Intent(cardView.getContext(), AppInfoPage.class);
-            intent.putExtra("app", position);
+            intent.putExtra("AppPosition", position);
             cardView.getContext().startActivity(intent);
         });
     }

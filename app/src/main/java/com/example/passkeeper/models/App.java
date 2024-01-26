@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import com.google.firebase.Timestamp;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class App {
     private final String name, password, emailOrPhoneNumber, imageUrl;
@@ -56,6 +57,15 @@ public class App {
 
         return true;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        App app = (App) o;
+        return Objects.equals(name, app.name) && Objects.equals(password, app.password) && Objects.equals(emailOrPhoneNumber, app.emailOrPhoneNumber) && Objects.equals(imageUrl, app.imageUrl) && Objects.equals(lastPasswordUpdate, app.lastPasswordUpdate) && tag == app.tag;
+    }
+
 
 
     public Tag getTag() {

@@ -36,11 +36,12 @@
     <string name="email_or_phone_number">Email or phone number</string>
     <string name="change_password">Change password</string>
     <string name="log_out">Log out</string>
+    <string name="save_and_log_out">Save and log out</string>
     <string name="have_an_account_login">have an account login</string>
     <string name="continueButton">Continue</string>
     <string name="fingerprint_sensor_to_login">fingerprint sensor to login</string>
     <string name="place_your_finger_on">Place your finger on</string>
-    <string name="verify_by_email">verify by email</string>
+    <string name="verify_by_email">Verify by email</string>
     <string name="or">Or,</string>
     <string name="please_enter_the_code">Please Enter the code that sent to</string>
     <string name="verify_your_email_address">Verify Your Email Address</string>
@@ -54,4 +55,5 @@
     <string name="OldPassword">Old password </string>
     <string name="NewPassword">New password </string>
     <string name="save">Save </string>
+    <string name="password_account">Password of account</string>
 </resources>

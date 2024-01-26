@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.example.passkeeper.R;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,6 +39,11 @@ public class VerifyEmailActivity extends AppCompatActivity {
         codeDigit2 = findViewById(R.id.CodeDegit2);
         codeDigit3 = findViewById(R.id.CodeDegit3);
         codeDigit4 = findViewById(R.id.CodeDegit4);
+
+        codeDigit1.addTextChangedListener(new MyTextWatcher(1));
+        codeDigit2.addTextChangedListener(new MyTextWatcher(2));
+        codeDigit3.addTextChangedListener(new MyTextWatcher(3));
+
         TextView emailAddressInVerify = findViewById(R.id.emailAddressInVerify);
         isVerify = getIntent().getBooleanExtra("isVerify", true);
 
@@ -98,4 +105,34 @@ public class VerifyEmailActivity extends AppCompatActivity {
             Toast.makeText(VerifyEmailActivity.this, "Verification Failed", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private class MyTextWatcher implements TextWatcher {
+
+        private final int editTextNumber;
+
+        public MyTextWatcher(int editTextNumber) {
+            this.editTextNumber = editTextNumber;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (editTextNumber == 1 && s.length() == 1)
+                codeDigit2.requestFocus();
+            else if (editTextNumber == 2 && s.length() == 1)
+                codeDigit3.requestFocus();
+            else if (editTextNumber == 3 && s.length() == 1)
+                codeDigit4.requestFocus();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    }
+
 }

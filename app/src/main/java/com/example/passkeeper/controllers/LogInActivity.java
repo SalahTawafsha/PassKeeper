@@ -74,7 +74,7 @@ public class LogInActivity extends AppCompatActivity {
                             intent.putExtra("isEmailVerify", true);
                         }
                         startActivity(intent);
-                    });
+                    }).addOnFailureListener(e -> Toast.makeText(this, "Your account is not available !", Toast.LENGTH_SHORT).show());
                 } else {
                     emailEditText.setError("Email or password is incorrect");
                 }

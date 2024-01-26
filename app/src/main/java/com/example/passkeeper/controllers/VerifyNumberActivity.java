@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -33,6 +35,11 @@ public class VerifyNumberActivity extends AppCompatActivity {
         codeDigit2 = findViewById(R.id.CodeDegit2);
         codeDigit3 = findViewById(R.id.CodeDegit3);
         codeDigit4 = findViewById(R.id.CodeDegit4);
+
+        codeDigit1.addTextChangedListener(new MyTextWatcher(1));
+        codeDigit2.addTextChangedListener(new MyTextWatcher(2));
+        codeDigit3.addTextChangedListener(new MyTextWatcher(3));
+
         phoneNumberInVerify = findViewById(R.id.phoneNumberInVerify);
 
         isNumberVerify = getIntent().getBooleanExtra("isNumberVerify", true);
@@ -88,6 +95,35 @@ public class VerifyNumberActivity extends AppCompatActivity {
         code = generateVerificationCode(); // ToDo: send code to user's phone number
         Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
         Log.i("ver code", code);
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+
+        private final int editTextNumber;
+
+        public MyTextWatcher(int editTextNumber) {
+            this.editTextNumber = editTextNumber;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (editTextNumber == 1 && s.length() == 1)
+                codeDigit2.requestFocus();
+            else if (editTextNumber == 2 && s.length() == 1)
+                codeDigit3.requestFocus();
+            else if (editTextNumber == 3 && s.length() == 1)
+                codeDigit4.requestFocus();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
     }
 
 

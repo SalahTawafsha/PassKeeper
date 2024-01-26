@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class User {
-    private final String email, userName, phoneNumber;
+    private String email, phoneNumber;
+    private final String userName;
     private final List<App> apps;
     private boolean emailVerified, phoneNumberVerified;
 
@@ -35,6 +36,14 @@ public class User {
         this.phoneNumberVerified = phoneNumberVerified;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public static User fromMap(DocumentSnapshot documentSnapshot) {
         List<App> apps = new ArrayList<>();
 
@@ -56,8 +65,8 @@ public class User {
         String userEmail = documentSnapshot.getString("email");
         String userUserName = documentSnapshot.getString("userName");
         String userPhoneNumber = documentSnapshot.getString("phoneNumber");
-        boolean isEmailVerified = documentSnapshot.getBoolean("emailVerified");
-        boolean isPhoneNumberVerified = documentSnapshot.getBoolean("phoneNumberVerified");
+        boolean isEmailVerified = Boolean.TRUE.equals(documentSnapshot.getBoolean("emailVerified"));
+        boolean isPhoneNumberVerified = Boolean.TRUE.equals(documentSnapshot.getBoolean("phoneNumberVerified"));
 
         return new User(userEmail, userUserName, userPhoneNumber, apps, isEmailVerified, isPhoneNumberVerified);
     }

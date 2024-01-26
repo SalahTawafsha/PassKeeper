@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.passkeeper.R;
 import com.example.passkeeper.models.App;
@@ -37,9 +38,7 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView userName;
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     private List<App> apps;
-    private ImageButton notfication;
-    private static List<App> oldPasswordApps;
-    private ListView notficationList;
+    private ListView notificationList;
 
     private EditText searchEditText;
 
@@ -54,19 +53,26 @@ public class DashboardActivity extends AppCompatActivity {
 
         searchEditText.addTextChangedListener(new MyTextWatcher());
 
-        notfication=findViewById(R.id.notificationButton);
-        notficationList=findViewById(R.id.notificationListView);
+        ImageButton notification = findViewById(R.id.notificationButton);
+        notificationList = findViewById(R.id.notificationListView);
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        notfication.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNavigationDrawer();
-
-            }
-        });
+        notification.setOnClickListener(v -> openNavigationDrawer());
 
     }
+
+    @Override
+    public void onBackPressed() {
+        // Check if the current activity is the DashboardActivity
+        if (getClass().getSimpleName().equals("DashboardActivity")) {
+            // You can show a Toast message or take any other action
+            Toast.makeText(this, "Back button press disabled on Dashboard", Toast.LENGTH_SHORT).show();
+        } else {
+            // Call the default behavior to allow navigating back for other activities
+            super.onBackPressed();
+        }
+    }
+
     private void openNavigationDrawer() {
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
@@ -76,6 +82,7 @@ public class DashboardActivity extends AppCompatActivity {
             openNotifications();
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -119,7 +126,7 @@ public class DashboardActivity extends AppCompatActivity {
                 notificationMessages.add("Password of " + app.getName() + " is too old  , please update it");
             }
 
-            ArrayAdapter<String> notificationAdapter = (ArrayAdapter<String>) notficationList.getAdapter();
+            ArrayAdapter<String> notificationAdapter = (ArrayAdapter<String>) notificationList.getAdapter();
             if (notificationAdapter != null) {
                 notificationAdapter.clear();
                 notificationAdapter.addAll(notificationMessages);
@@ -132,14 +139,13 @@ public class DashboardActivity extends AppCompatActivity {
                 );
 
                 // Set the adapter to your ListView
-                notficationList.setAdapter(notificationAdapter);
+                notificationList.setAdapter(notificationAdapter);
                 // notificationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notificationMessages);
-                notficationList.setAdapter(notificationAdapter);
+                notificationList.setAdapter(notificationAdapter);
             }
 
-        notificationAdapter.notifyDataSetChanged();
+            notificationAdapter.notifyDataSetChanged();
 
-        // ToDo: Open notifications page and show notificationMessages list with message
         }
     }
 

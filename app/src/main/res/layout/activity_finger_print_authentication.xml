@@ -5,7 +5,7 @@
     android:id="@+id/PhoneNumberVerviyPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.VerifyNumberActivity">
+    tools:context=".controllers.FingerprintAuthActivity">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -86,6 +86,7 @@
         android:text="@string/verify_by_email"
         android:textColor="#6192F5"
         android:textSize="16sp"
+        android:onClick="openEmailAuthenticationPage"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +120,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75"
-        app:srcCompat="@drawable/fingerprint_icone" />
+        app:srcCompat="@drawable/fingerprint_icone"
+        android:importantForAccessibility="no" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

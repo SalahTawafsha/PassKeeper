@@ -2,6 +2,7 @@ package com.example.passkeeper.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
@@ -9,8 +10,6 @@ import androidx.core.content.ContextCompat;
 
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.passkeeper.R;
@@ -28,17 +27,12 @@ public class FingerprintAuthActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finger_print_authentication);
-        fingerprint=findViewById(R.id.imageButtonFinger);
+        fingerprint = findViewById(R.id.imageButtonFinger);
 
         createBiometricPrompt();
         createPromptInfo();
-        fingerprint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showBiometricPrompt();
-
-            }
-        });
+        showBiometricPrompt();
+        fingerprint.setOnClickListener(v -> showBiometricPrompt());
 
     }
 
@@ -51,10 +45,10 @@ public class FingerprintAuthActivity extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 // Fingerprint authentication succeeded
 
-                // Navigate to MainActivity
-                Intent intent = new Intent(FingerprintAuthActivity.this, MainActivity.class);
+                // Navigate to DashboardActivity
+                Intent intent = new Intent(FingerprintAuthActivity.this, DashboardActivity.class);
+                finish();
                 startActivity(intent);
-                finish(); // Optional: Finish the current activity to prevent the user from going back
             }
 
             @Override
@@ -77,5 +71,11 @@ public class FingerprintAuthActivity extends AppCompatActivity {
     private void showBiometricPrompt() {
         // Display the biometric prompt
         biometricPrompt.authenticate(promptInfo);
+    }
+
+    public void openEmailAuthenticationPage(View view) {
+        Intent intent = new Intent(this, VerifyEmailActivity.class);
+        finish();
+        startActivity(intent);
     }
 }

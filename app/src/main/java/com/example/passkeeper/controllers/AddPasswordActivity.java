@@ -73,6 +73,19 @@ public class AddPasswordActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        // Check if the current activity is the DashboardActivity
+        if (getClass().getSimpleName().equals("AddPasswordActivity")) {
+            // You can show a Toast message or take any other action
+            Toast.makeText(this, "Back button press disabled on Add password page", Toast.LENGTH_SHORT).show();
+        } else {
+            // Call the default behavior to allow navigating back for other activities
+            super.onBackPressed();
+        }
+    }
+
+
     public void addApp(View view) {
         if (validate()) {
             String appName = appNameEditText.getText().toString();

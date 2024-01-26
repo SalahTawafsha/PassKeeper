@@ -64,13 +64,13 @@ public class VerifyNumberActivity extends AppCompatActivity {
                 FirebaseFirestore.getInstance().collection("users").document(user.getEmail()).set(user).addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Verification Success", Toast.LENGTH_SHORT).show();
                     finish();
-                    Intent intent = new Intent(this, VerifyEmailActivity.class);
+                    Intent intent = new Intent(this, FingerprintAuthActivity.class);
                     intent.putExtra("isVerify", isEmailVerify);
                     startActivity(intent);
                 });
             } else {
                 finish();
-                Intent intent = new Intent(this, VerifyEmailActivity.class);
+                Intent intent = new Intent(this, FingerprintAuthActivity.class);
                 intent.putExtra("isVerify", isEmailVerify);
                 startActivity(intent);
             }
@@ -86,19 +86,9 @@ public class VerifyNumberActivity extends AppCompatActivity {
 
     public void send() {
         code = generateVerificationCode(); // ToDo: send code to user's phone number
+        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
         Log.i("ver code", code);
     }
-
-//    public void sendSMS(Context context, String incomingNumber, String sms) {
-//        SmsManager smsManager = SmsManager.getDefault();                                      //send sms
-//        try {
-//            ArrayList<String> parts = smsManager.divideMessage(sms);
-//            smsManager.sendMultipartTextMessage(incomingNumber, null, parts, null, null);
-//            Log.v("ranjith", "Sms to be sent is " + sms);
-//        } catch (Exception e) {
-//            Log.v("ranjith", e + "");
-//        }
-//    }
 
 
 }

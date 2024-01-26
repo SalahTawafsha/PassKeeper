@@ -83,11 +83,13 @@ public class VerifyEmailActivity extends AppCompatActivity {
                     FirebaseFirestore.getInstance().collection("users").document(email).set(user).addOnSuccessListener(aVoid -> {
                         Toast.makeText(this, "Verification Success", Toast.LENGTH_SHORT).show();
                         finish();
+                        finish();
                         Intent intent = new Intent(this, DashboardActivity.class);
                         startActivity(intent);
                     });
                 });
             } else {
+                finish();
                 finish();
                 Intent intent = new Intent(this, DashboardActivity.class);
                 startActivity(intent);

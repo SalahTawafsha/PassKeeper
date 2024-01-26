@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.passkeeper.R;
 
@@ -20,6 +21,18 @@ public class ProfileActivity extends AppCompatActivity {
         TextView changePassword = findViewById(R.id.changePassword);
         changePassword.setText(Html.fromHtml("<u>" + getString(R.string.change_password) + "</u>"));
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Check if the current activity is the DashboardActivity
+        if (getClass().getSimpleName().equals("ProfileActivity")) {
+            // You can show a Toast message or take any other action
+            Toast.makeText(this, "Back button press disabled on Profile page", Toast.LENGTH_SHORT).show();
+        } else {
+            // Call the default behavior to allow navigating back for other activities
+            super.onBackPressed();
+        }
     }
 
     public void getStartedButtonClicked(View view) {

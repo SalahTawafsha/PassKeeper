@@ -16,17 +16,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.117"
-        app:srcCompat="@drawable/phone_icone" />
+        app:srcCompat="@drawable/phone_icone"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="288dp"
         android:layout_height="29dp"
         android:fontFamily="sans-serif"
-        android:text="Verify Your Phone Number"
+        android:text="@string/verify_your_phone_number"
         android:textAlignment="center"
         android:textColor="#17096F"
-        android:textSize="23dp"
+        android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,10 +40,10 @@
         android:id="@+id/textView14"
         android:layout_width="290dp"
         android:layout_height="38dp"
-        android:text="Please Enter the 4-digit code we sent "
+        android:text="@string/please_enter_the_code"
         android:textAlignment="center"
         android:textColor="#6192F5"
-        android:textSize="17dp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -54,9 +55,9 @@
         android:id="@+id/Resend_codeVerfiyNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Resend code"
+        android:text="@string/resend_code"
         android:textColor="#6192F5"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,10 +83,9 @@
         app:strokeWidth="3dp" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/phoneNumberInVerify"
         android:layout_width="288dp"
         android:layout_height="36dp"
-        android:text="to  your mobile +972 592485699 "
         android:textAlignment="center"
         android:textColor="#6192F5"
         android:textSize="17sp"
@@ -96,113 +96,80 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.574" />
 
-    <View
-        android:id="@+id/view15"
-        android:layout_width="50dp"
-        android:layout_height="51dp"
-        android:background="@drawable/view_gray_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
 
     <EditText
         android:id="@+id/CodeDegit2"
-        android:layout_width="46dp"
-        android:layout_height="40dp"
-        android:background="@null"
+        android:layout_width="50dp"
+        android:layout_height="51dp"
+        android:background="@drawable/view_gray_color"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
         android:textColor="#1B1A1A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
+        app:layout_constraintVertical_bias="0.709"
+        android:importantForAutofill="no" />
 
-    <View
-        android:id="@+id/view16"
-        android:layout_width="50dp"
-        android:layout_height="51dp"
-        android:background="@drawable/view_gray_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.595"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
 
     <EditText
         android:id="@+id/CodeDegit3"
-        android:layout_width="46dp"
-        android:layout_height="40dp"
-        android:background="@null"
+        android:layout_width="50dp"
+        android:layout_height="51dp"
+        android:background="@drawable/view_gray_color"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
         android:textColor="#1B1A1A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.594"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.701" />
+        app:layout_constraintVertical_bias="0.709"
+        android:importantForAutofill="no" />
+
 
     <EditText
         android:id="@+id/CodeDegit1"
-        android:layout_width="46dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        android:ems="10"
-        android:inputType="text"
-        android:textColor="#1B1A1A"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
-
-    <View
-        android:id="@+id/view14"
         android:layout_width="50dp"
         android:layout_height="51dp"
         android:background="@drawable/view_gray_color"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
+        android:textColor="#1B1A1A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintHorizontal_bias="0.256"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.707"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/CodeDegit4"
-        android:layout_width="46dp"
-        android:layout_height="40dp"
-        android:background="@null"
+        android:layout_width="50dp"
+        android:layout_height="51dp"
+        android:background="@drawable/view_gray_color"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
         android:textColor="#1B1A1A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
-
-    <View
-        android:id="@+id/view17"
-        android:layout_width="50dp"
-        android:layout_height="51dp"
-        android:background="@drawable/view_gray_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.709"
+        android:importantForAutofill="no" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

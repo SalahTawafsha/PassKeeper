@@ -42,4 +42,9 @@
     <string name="place_your_finger_on">Place your finger on</string>
     <string name="verify_by_email">verify by email</string>
     <string name="or">Or,</string>
+    <string name="please_enter_the_code">Please Enter the code that sent to</string>
+    <string name="verify_your_email_address">Verify Your Email Address</string>
+    <string name="resend_code">Resend code</string>
+    <string name="verify_your_phone_number">Verify Your Phone Number</string>
+    <string name="fingerprint_authentication">Fingerprint Authentication</string>
 </resources>

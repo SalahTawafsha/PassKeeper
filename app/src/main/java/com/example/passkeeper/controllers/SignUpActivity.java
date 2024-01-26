@@ -3,6 +3,7 @@ package com.example.passkeeper.controllers;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -64,6 +65,10 @@ public class SignUpActivity extends AppCompatActivity {
                             FirebaseFirestore.getInstance().collection("users").document(newUser.getEmail()).set(newUser);
 
                             finish();
+                            Intent intent = new Intent(this, VerifyNumberActivity.class);
+                            intent.putExtra("isNumberVerify", true);
+                            intent.putExtra("isEmailVerify", true);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(this, "User already exists.", Toast.LENGTH_SHORT).show();

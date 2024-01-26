@@ -9,8 +9,9 @@ import java.util.List;
 
 public class User {
     private final String email, userName, phoneNumber;
-    private final List<App> apps;
+    private final List<App> apps ;
     private final List<Notification> notifications;
+    private boolean emailVerified, phoneNumberVerified;
 
     public User(String email, String userName, String phoneNumber) {
         this.email = email;
@@ -26,6 +27,16 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.apps = apps;
         this.notifications = notifications;
+    }
+
+    public User(String email, String userName, String phoneNumber, List<App> apps, List<Notification> notifications, boolean emailVerified, boolean phoneNumberVerified) {
+        this.email = email;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+        this.apps = apps;
+        this.notifications = notifications;
+        this.emailVerified = emailVerified;
+        this.phoneNumberVerified = phoneNumberVerified;
     }
 
     public static User fromMap(DocumentSnapshot documentSnapshot) {
@@ -45,8 +56,10 @@ public class User {
         String userEmail = documentSnapshot.getString("email");
         String userUserName = documentSnapshot.getString("userName");
         String userPhoneNumber = documentSnapshot.getString("phoneNumber");
+        boolean isEmailVerified = documentSnapshot.getBoolean("emailVerified");
+        boolean isPhoneNumberVerified = documentSnapshot.getBoolean("phoneNumberVerified");
 
-        return new User(userEmail, userUserName, userPhoneNumber, apps, notifications);
+        return new User(userEmail, userUserName, userPhoneNumber, apps, notifications, isEmailVerified, isPhoneNumberVerified);
     }
 
     public String getEmail() {
@@ -69,4 +82,19 @@ public class User {
         return notifications;
     }
 
+    public boolean isEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public boolean isPhoneNumberVerified() {
+        return phoneNumberVerified;
+    }
+
+    public void setPhoneNumberVerified(boolean phoneNumberVerified) {
+        this.phoneNumberVerified = phoneNumberVerified;
+    }
 }

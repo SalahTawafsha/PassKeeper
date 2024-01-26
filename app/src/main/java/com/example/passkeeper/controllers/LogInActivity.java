@@ -12,7 +12,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.passkeeper.R;
+import com.example.passkeeper.models.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LogInActivity extends AppCompatActivity {
     private EditText emailEditText;
@@ -49,10 +51,28 @@ public class LogInActivity extends AppCompatActivity {
         if (validate()) {
             auth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString()).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    editor.putString("logInEmail", emailEditText.getText().toString());
-                    editor.apply();
-                    Intent intent = new Intent(this, VerifyNumberActivity.class);
-                    startActivity(intent);
+                    FirebaseFirestore.getInstance().collection("users").document(emailEditText.getText().toString()).get().addOnSuccessListener(documentSnapshot -> {
+                        User user = User.fromMap(documentSnapshot);
+
+
+                        editor.putString("logInEmail", emailEditText.getText().toString());
+                        editor.apply();
+                        Intent intent = new Intent(this, VerifyNumberActivity.class);
+                        if (user.isPhoneNumberVerified() && user.isEmailVerified()) {
+                            intent.putExtra("isNumberVerify", false); // make auth
+                            intent.putExtra("isEmailVerify", false); // make auth
+                        } else if (user.isPhoneNumberVerified()) {
+                            intent.putExtra("isNumberVerify", false); // make auth
+                            intent.putExtra("isEmailVerify", true); // make verify
+                        } else if (user.isEmailVerified()) {
+                            intent.putExtra("isNumberVerify", true);
+                            intent.putExtra("isEmailVerify", false);
+                        } else {
+                            intent.putExtra("isNumberVerify", true);
+                            intent.putExtra("isEmailVerify", true);
+                        }
+                        startActivity(intent);
+                    });
                 } else {
                     emailEditText.setError("Email or password is incorrect");
                 }

@@ -4,17 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#17096F"
+    android:background="@drawable/img"
     tools:context=".controllers.AppInfoPage">
 
-    <ImageView
-        android:id="@+id/background_appInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="324dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/bank_account_background" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -22,9 +14,12 @@
         android:layout_height="52dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="325dp"
-        app:layout_constraintEnd_toEndOf="@+id/background_appInfo"
-        app:layout_constraintStart_toStartOf="@+id/background_appInfo"
-        tools:layout_editor_absoluteY="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -32,74 +27,95 @@
         android:layout_width="250dp"
         android:layout_height="41dp"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="82dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="257dp"
         android:fontFamily="@font/merriweather"
         android:text="Bank of Palestine"
         android:textColor="#CCC6C6"
         android:textSize="27dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background_appInfo"
-        app:layout_constraintEnd_toEndOf="@+id/background_appInfo"
-        app:layout_constraintStart_toStartOf="@+id/background_appInfo"
-        app:layout_constraintTop_toTopOf="@+id/background_appInfo" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.069" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="359dp"
         android:layout_height="36dp"
-        android:layout_marginTop="224dp"
         android:text="Email"
         android:textColor="#CCC6C6"
         android:textSize="22dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@+id/background_appInfo"
-        tools:layout_editor_absoluteX="32dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.277" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="349dp"
         android:layout_height="48dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="226dp"
-        android:layout_marginEnd="36dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:textColor="#FEFEFE"
-        app:layout_constraintEnd_toEndOf="@+id/background_appInfo"
-        app:layout_constraintStart_toStartOf="@+id/background_appInfo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.741"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.392" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="359dp"
         android:layout_height="36dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="20dp"
         android:text="Password"
         android:textColor="#CCC6C6"
         android:textSize="22dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/background_appInfo"
-        app:layout_constraintStart_toStartOf="@+id/background_appInfo"
-        tools:layout_editor_absoluteY="298dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.479" />
 
     <EditText
         android:id="@+id/editTextpassword"
         android:layout_width="314dp"
         android:layout_height="49dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="353dp"
-        android:layout_marginEnd="71dp"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="#FEFEFE"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.573" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/Open_app_button"
+        android:id="@+id/delete_app_button"
+        android:layout_width="171dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="65dp"
+        android:backgroundTint="#0E244F"
+        android:text="@string/deletebutton"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextpassword"
+        app:layout_constraintVertical_bias="0.969"
+        app:strokeColor="#6193F6"
+        app:strokeWidth="3dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/open_app_button"
         android:layout_width="171dp"
         android:layout_height="59dp"
         android:layout_marginBottom="65dp"
@@ -110,21 +126,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextpassword"
-        app:layout_constraintVertical_bias="0.969"
+        app:layout_constraintVertical_bias="0.218"
         app:strokeColor="#6193F6"
         app:strokeWidth="3dp" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/editbuutonAppInfo"
         android:layout_width="52dp"
         android:layout_height="54dp"
-        android:layout_marginStart="338dp"
-        android:layout_marginEnd="21dp"
         android:background="#17096F"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/edit_button_logo"
-        tools:layout_editor_absoluteY="346dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57"
+        app:srcCompat="@drawable/edit_button_logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

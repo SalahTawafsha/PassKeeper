@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getStartedButtonClicked(View view) {
-        Intent intent = new Intent(this, DashboardActivity.class);
+        Intent intent = new Intent(this, LogInActivity.class);
         startActivity(intent);
     }
 }

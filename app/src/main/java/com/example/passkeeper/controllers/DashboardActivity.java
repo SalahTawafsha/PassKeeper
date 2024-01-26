@@ -1,6 +1,7 @@
 package com.example.passkeeper.controllers;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +15,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +37,10 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView userName;
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     private List<App> apps;
+    private ImageButton notfication;
+    private static List<App> oldPasswordApps;
+    private ListView notficationList;
+
     private EditText searchEditText;
 
     @Override
@@ -47,10 +54,28 @@ public class DashboardActivity extends AppCompatActivity {
 
         searchEditText.addTextChangedListener(new MyTextWatcher());
 
+        notfication=findViewById(R.id.notificationButton);
+        notficationList=findViewById(R.id.notificationListView);
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-    }
+        notfication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNavigationDrawer();
 
+            }
+        });
+
+    }
+    private void openNavigationDrawer() {
+        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+        if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+            drawerLayout.closeDrawer(Gravity.RIGHT);
+        } else {
+            drawerLayout.openDrawer(Gravity.RIGHT);
+            openNotifications();
+        }
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -66,6 +91,8 @@ public class DashboardActivity extends AppCompatActivity {
         fireStore.collection("users").document(sharedPref.getString("logInEmail", "")).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     User user = User.fromMap(documentSnapshot);
+                    apps = user.getApps();
+
                     userName.setText(user.getUserName());
 
                     apps = user.getApps();
@@ -84,17 +111,38 @@ public class DashboardActivity extends AppCompatActivity {
                 });
     }
 
-    public void openNotifications(View view) {
-        List<App> oldPasswordApps = new ArrayList<>();
+    public void openNotifications() {
+        List<String> notificationMessages = new ArrayList<>();
+
         for (App app : apps) {
             if (app.isOldPassword()) {
-                oldPasswordApps.add(app);
+                notificationMessages.add("Password of " + app.getName() + " is too old  , please update it");
             }
 
-        }
+            ArrayAdapter<String> notificationAdapter = (ArrayAdapter<String>) notficationList.getAdapter();
+            if (notificationAdapter != null) {
+                notificationAdapter.clear();
+                notificationAdapter.addAll(notificationMessages);
+            } else {
+                notificationAdapter = new ArrayAdapter<>(
+                        this,
+                        R.layout.listview, // Your custom layout for each item
+                        R.id.notificationTextView, // The ID of the TextView in the layout
+                        notificationMessages // Your data source
+                );
 
-        // ToDo: Open notifications page and show oldPasswordApps list with message
+                // Set the adapter to your ListView
+                notficationList.setAdapter(notificationAdapter);
+                // notificationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, notificationMessages);
+                notficationList.setAdapter(notificationAdapter);
+            }
+
+        notificationAdapter.notifyDataSetChanged();
+
+        // ToDo: Open notifications page and show notificationMessages list with message
+        }
     }
+
 
     public void openAddPassword(View view) {
         Intent intent = new Intent(this, AddPasswordActivity.class);

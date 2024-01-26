@@ -49,4 +49,5 @@ dependencies {
     implementation ("joda-time:joda-time:2.10.14")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.google.android.gms:play-services-auth-api-phone:18.0.1")
+    implementation("androidx.biometric:biometric:1.1.0")
 }

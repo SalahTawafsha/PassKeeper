@@ -85,7 +85,7 @@
         android:id="@+id/textView17"
         android:layout_width="288dp"
         android:layout_height="36dp"
-        android:text="to  your mobile +972 592485699 "
+        android:text="to  your mobile +970 545995166"
         android:textAlignment="center"
         android:textColor="#6192F5"
         android:textSize="17sp"
@@ -117,9 +117,9 @@
         android:inputType="text"
         android:textColor="#1B1A1A"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="434dp" />
+        tools:layout_editor_absoluteY="433dp" />
 
     <View
         android:id="@+id/view16"
@@ -158,10 +158,10 @@
         android:textColor="#1B1A1A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintHorizontal_bias="0.273"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
+        app:layout_constraintVertical_bias="0.699" />
 
     <View
         android:id="@+id/view14"

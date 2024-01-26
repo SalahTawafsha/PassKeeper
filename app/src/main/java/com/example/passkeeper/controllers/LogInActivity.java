@@ -28,6 +28,7 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+       // auth.sendPasswordResetEmail()
 
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -62,6 +63,7 @@ public class LogInActivity extends AppCompatActivity {
         }
 
     }
+    
 
     private boolean validate() {
         return !emailEditText.getText().toString().isEmpty() && !passwordEditText.getText().toString().isEmpty();

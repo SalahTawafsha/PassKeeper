@@ -8,10 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -31,6 +34,7 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView userName;
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     private List<App> apps;
+    private EditText searchEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         userName = findViewById(R.id.user_name);
         list = findViewById(R.id.recyclerView);
+        searchEditText = findViewById(R.id.searchEditText);
+
+        searchEditText.addTextChangedListener(new MyTextWatcher());
+
         list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
     }
@@ -58,14 +66,20 @@ public class DashboardActivity extends AppCompatActivity {
         fireStore.collection("users").document(sharedPref.getString("logInEmail", "")).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     User user = User.fromMap(documentSnapshot);
-                    apps = user.getApps();
-
                     userName.setText(user.getUserName());
-                    for (App app :
-                            user.getApps()) {
-                        Log.e("App password", app.getPassword());
+
+                    apps = user.getApps();
+                    Log.i("apps", apps.toString());
+
+                    ArrayList<App> searchApps = new ArrayList<>(user.getApps().size());
+                    for (App app : apps) {
+                        if (app.getName().toLowerCase().contains(searchEditText.getText().toString().toLowerCase())) {
+                            searchApps.add(app);
+                        }
                     }
-                    AppAdapter adapter = new AppAdapter(user.getApps());
+                    Log.i("searchApps", searchApps.toString());
+
+                    AppAdapter adapter = new AppAdapter(searchApps);
                     list.setAdapter(adapter);
                 });
     }
@@ -117,4 +131,22 @@ public class DashboardActivity extends AppCompatActivity {
         popupWindow.showAtLocation(findViewById(R.id.dashboardActivity), Gravity.CENTER, 0, 0);
 
     }
+
+    private class MyTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            loadCardView();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    }
+
 }

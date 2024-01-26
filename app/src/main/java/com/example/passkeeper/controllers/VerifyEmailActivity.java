@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.passkeeper.models.EmailSender;
 import com.example.passkeeper.models.User;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -62,6 +63,9 @@ public class VerifyEmailActivity extends AppCompatActivity {
 
     public void send() {
         code = generateVerificationCode(); // ToDo: send code to user's email
+
+        EmailSender.sendEmail(email, "Verification code", "Your verification code is: " + code, this);
+
         Log.i("ver code", code);
     }
 

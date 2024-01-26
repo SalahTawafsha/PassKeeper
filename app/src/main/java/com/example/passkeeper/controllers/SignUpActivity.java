@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -65,6 +66,11 @@ public class SignUpActivity extends AppCompatActivity {
                             FirebaseFirestore.getInstance().collection("users").document(newUser.getEmail()).set(newUser);
 
                             finish();
+                            SharedPreferences sharedPref = getSharedPreferences(getString(R.string.login), MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("logInEmail", newUser.getEmail());
+                            editor.apply();
+
                             Intent intent = new Intent(this, VerifyNumberActivity.class);
                             intent.putExtra("isNumberVerify", true);
                             intent.putExtra("isEmailVerify", true);

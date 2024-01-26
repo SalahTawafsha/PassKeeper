@@ -5,19 +5,20 @@
     android:id="@+id/PhoneNumberVerviyPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".controllers.VerifyEmailActivity">
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="199dp"
         android:layout_height="192dp"
+        android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.117"
-        app:srcCompat="@drawable/email_verify_icone"
-        android:importantForAccessibility="no" />
+        app:srcCompat="@drawable/email_verify_icone" />
 
     <TextView
         android:id="@+id/textView10"
@@ -102,6 +103,7 @@
         android:layout_height="51dp"
         android:background="@drawable/view_gray_color"
         android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="number"
         android:maxLength="1"
         android:textAlignment="center"
@@ -111,8 +113,7 @@
         app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.705" />
 
     <EditText
         android:id="@+id/CodeDegit3"

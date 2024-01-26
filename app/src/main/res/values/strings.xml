@@ -50,4 +50,8 @@
     <string name="search_by_app_name">Tap to search by app name</string>
     <string name="deletebutton">Delete App</string>
     <string name="forgot_password">forgot password?</string>
+    <string name="Change_password">Change Password</string>
+    <string name="OldPassword">Old password </string>
+    <string name="NewPassword">New password </string>
+    <string name="save">Save </string>
 </resources>

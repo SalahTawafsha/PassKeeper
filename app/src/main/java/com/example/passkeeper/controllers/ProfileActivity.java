@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import com.example.passkeeper.R;
 import com.example.passkeeper.models.User;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -28,7 +32,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     private User user;
+    private SharedPreferences sharedPreferences;
 
+    private final FirebaseAuth auth = FirebaseAuth.getInstance();
+    private final FirebaseUser firebaseUser = auth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,9 @@ public class ProfileActivity extends AppCompatActivity {
         userName = findViewById(R.id.user_name);
         logOut = findViewById(R.id.Log_out);
         accountPassword = findViewById(R.id.accountPassword);
+        sharedPreferences = getSharedPreferences(
+                getString(R.string.login)
+                , Context.MODE_PRIVATE);
 
         TextView changePassword = findViewById(R.id.changePassword);
         changePassword.setText(Html.fromHtml("<u>" + getString(R.string.change_password) + "</u>"));
@@ -53,15 +63,33 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         });
-        logOut.setOnClickListener(view -> {
-            finish();
-            
-            if (logOut.getText().toString().equals(getText(R.string.save_and_log_out).toString())) {
-                user.setPhoneNumber(phoneNum.getText().toString());
-                user.setPhoneNumberVerified(false);
 
-                fireStore.collection("users").document(user.getEmail()).set(user);
-                Toast.makeText(this, "Changes saved", Toast.LENGTH_SHORT).show();
+        logOut.setOnClickListener(view -> {
+
+            if (!accountPassword.getText().toString().isEmpty() && logOut.getText().toString().equals(getText(R.string.save_and_log_out).toString())) {
+                AuthCredential credential = EmailAuthProvider.getCredential(sharedPreferences.getString("logInEmail", ""), accountPassword.getText().toString());
+
+                firebaseUser.reauthenticate(credential)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                finish();
+                                // User successfully re-authenticated, now change the password
+                                user.setPhoneNumber(phoneNum.getText().toString());
+                                user.setPhoneNumberVerified(false);
+
+                                fireStore.collection("users").document(user.getEmail()).set(user);
+                                Toast.makeText(this, "Changes saved", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                // Handle re-authenticated failure
+                                Toast.makeText(this, "Password is wrong.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+            } else if (accountPassword.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
+            } else {
+                finish();
             }
 
         });
@@ -111,11 +139,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void loadAppInfo() {
 
-        SharedPreferences sharedPref = getSharedPreferences(
-                getString(R.string.login)
-                , Context.MODE_PRIVATE);
 
-        fireStore.collection("users").document(sharedPref.getString("logInEmail", "")).get()
+        fireStore.collection("users").document(sharedPreferences.getString("logInEmail", "")).get()
                 .addOnSuccessListener(documentSnapshot -> {
 
                     user = User.fromMap(documentSnapshot);
@@ -135,7 +160,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (!user.getPhoneNumber().equals(phoneNum.getText().toString())) {
+            if (user != null && !user.getPhoneNumber().equals(phoneNum.getText().toString())) {
                 logOut.setText(getText(R.string.save_and_log_out));
                 accountPassword.setVisibility(View.VISIBLE);
             }

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,6 +30,7 @@ public class ChangeProfilePasswordActivity extends AppCompatActivity {
     private ImageButton openedEyeButton;
     private ImageButton closedEyeButton;
     private SharedPreferences sharedPreferences;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,12 @@ public class ChangeProfilePasswordActivity extends AppCompatActivity {
         openedEyeButton = findViewById(R.id.openedEyeButton);
         closedEyeButton = findViewById(R.id.closedEyeButton);
 
-        sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(
+                getString(R.string.login)
+                , MODE_PRIVATE);
+
+        email = sharedPreferences.getString("logInEmail", "");
+        Log.i("email", email);
 
         newPassword.addTextChangedListener(new ChangeProfilePasswordActivity.MyTextWatcher());
 
@@ -104,14 +111,16 @@ public class ChangeProfilePasswordActivity extends AppCompatActivity {
     }
 
     public void forgotPasswordButtonClicked(View view) {
-        auth.sendPasswordResetEmail(sharedPreferences.getString("logInEmail", ""))
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(this, "Email sent.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Email not sent.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        if (email != null) {
+            auth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Email sent.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Email not sent.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 
     private class MyTextWatcher implements TextWatcher {

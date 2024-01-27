@@ -86,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
                             }
                         });
 
-            } else if (accountPassword.getText().toString().isEmpty()) {
+            } else if (accountPassword.getText().toString().isEmpty() && logOut.getText().toString().equals(getText(R.string.save_and_log_out).toString())) {
                 Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
             } else {
                 finish();

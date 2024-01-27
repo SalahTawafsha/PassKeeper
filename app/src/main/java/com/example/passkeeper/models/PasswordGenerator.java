@@ -14,9 +14,9 @@ public class PasswordGenerator {
         Random random = new Random();
 
         StringBuilder password = new StringBuilder();
-        password.append(random.nextInt(LOWERCASE_CHARACTERS.length()));
-        password.append(random.nextInt(UPPERCASE_CHARACTERS.length()));
-        password.append(random.nextInt(DIGITS.length()));
+        password.append(LOWERCASE_CHARACTERS.charAt(random.nextInt(LOWERCASE_CHARACTERS.length())));
+        password.append(UPPERCASE_CHARACTERS.charAt(random.nextInt(UPPERCASE_CHARACTERS.length())));
+        password.append(DIGITS.charAt(random.nextInt(DIGITS.length())));
 
         String validChars = "";
         validChars += LOWERCASE_CHARACTERS;

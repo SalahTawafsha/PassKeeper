@@ -12,7 +12,7 @@ import com.android.volley.toolbox.Volley;
 
 public class EmailSender {
 
-    private static final String API_URL = "http://192.168.1.11/usable_security_APIs/email_ver.py";
+    private static final String API_URL = "http://192.168.215.194/usable_security_APIs/email_ver.py";
 
     public static void sendEmail(String email, String subject, String body, Context context) {
         // Append parameters to the URL using Uri.Builder

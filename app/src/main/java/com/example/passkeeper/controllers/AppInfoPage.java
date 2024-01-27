@@ -6,6 +6,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -37,6 +39,10 @@ public class AppInfoPage extends AppCompatActivity {
         email = findViewById(R.id.editTextTextEmailAddress);
         password = findViewById(R.id.editTextpassword);
         ImageUrl = findViewById(R.id.icon_name);
+
+        email.addTextChangedListener(new MyTextWatcher());
+        password.addTextChangedListener(new MyTextWatcher());
+
         appName = findViewById(R.id.AppName);
         layout = findViewById(R.id.AppinfoLayout);
         ImageButton editButton = findViewById(R.id.editbuttonAppInfo);
@@ -77,7 +83,13 @@ public class AppInfoPage extends AppCompatActivity {
 
 
                     delete.setOnClickListener(v -> {
-                        apps.remove(currentApp);
+                        if (delete.getText().toString().equals(getText(R.string.deletebutton).toString())) {
+                            apps.remove(currentApp);
+                        } else {
+
+                            App newApp = new App(currentApp.getName(), password.getText().toString(), email.getText().toString(), currentApp.getTag(), currentApp.getImageUrl(), currentApp.getLastPasswordUpdate());
+                            apps.set(appPosition, newApp);
+                        }
                         FirebaseFirestore.getInstance().collection("users").document(sharedPref.getString("logInEmail", "")).set(user);
                         finish();
 
@@ -100,6 +112,27 @@ public class AppInfoPage extends AppCompatActivity {
                 return R.drawable.socialmedia_background;
         }
         return 0;
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (!email.getText().toString().equals(currentApp.getEmailOrPhoneNumber()) || !password.getText().toString().equals(currentApp.getPassword())) {
+                delete.setText(getText(R.string.save));
+            } else {
+                delete.setText(getText(R.string.deletebutton));
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
     }
 
 }

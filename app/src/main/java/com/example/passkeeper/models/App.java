@@ -28,7 +28,6 @@ public class App {
     public static App fromMap(HashMap<String, Object> appMap) {
         String name = (String) appMap.get("name");
         String password = (String) appMap.get("password");
-        password = StringRotationCipher.decrypt(password, name.length() % 8 != 0 ? name.length() % 8 : 1);
         String email = (String) appMap.get("emailOrPhoneNumber");
         String imageUrl = (String) appMap.get("imageUrl");
         String tag = (String) appMap.get("tag");

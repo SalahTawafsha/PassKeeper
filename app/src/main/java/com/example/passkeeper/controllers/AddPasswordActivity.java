@@ -25,7 +25,6 @@ import com.example.passkeeper.R;
 import com.example.passkeeper.models.App;
 import com.example.passkeeper.models.PasswordGenerator;
 import com.example.passkeeper.models.PasswordStrengthChecker;
-import com.example.passkeeper.models.StringRotationCipher;
 import com.example.passkeeper.models.User;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -91,7 +90,6 @@ public class AddPasswordActivity extends AppCompatActivity {
             String appName = appNameEditText.getText().toString();
             String email = emailEditText.getText().toString();
             String password = passwordEditText.getText().toString();
-            password = StringRotationCipher.encrypt(password, appName.length() % 8 != 0 ? appName.length() % 8 : 1);
             App.Tag tag = getTag();
             String link = getLink(appName, tag);
 

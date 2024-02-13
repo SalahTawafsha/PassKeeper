@@ -5,19 +5,20 @@
     android:id="@+id/PhoneNumberVerviyPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".controllers.FingerprintAuthActivity">
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="199dp"
         android:layout_height="192dp"
+        android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.117"
-        app:srcCompat="@drawable/fingerprint_authentication_icone"
-        android:importantForAccessibility="no" />
+        app:srcCompat="@drawable/fingerprint_authentication_icone" />
 
     <TextView
         android:id="@+id/textView10"
@@ -70,23 +71,23 @@
         android:id="@+id/imageView4"
         android:layout_width="88dp"
         android:layout_height="80dp"
+        android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.744"
-        app:srcCompat="@drawable/fingerprint_icone"
-        android:importantForAccessibility="no" />
+        app:srcCompat="@drawable/fingerprint_icone" />
 
     <TextView
         android:id="@+id/Resend_codeVerfiyNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="openEmailAuthenticationPage"
         android:text="@string/verify_by_email"
         android:textColor="#6192F5"
         android:textSize="16sp"
-        android:onClick="openEmailAuthenticationPage"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,14 +115,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"
+        android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75"
-        app:srcCompat="@drawable/fingerprint_icone"
-        android:importantForAccessibility="no" />
+        app:srcCompat="@drawable/fingerprint_icone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

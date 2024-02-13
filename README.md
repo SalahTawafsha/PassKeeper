@@ -44,8 +44,8 @@ note that here there are:
 - email must be valid
 - eye icon to show or hide the password
 - password strength indicator
-  <br>
-  <img src="https://github.com/SalahTawafsha/PassKeeper/assets/93351227/ef29f5e0-f57d-495c-ad82-2158ff76355f" alt="Sign up screen" width="200"/>
+<br>
+<img src="https://github.com/SalahTawafsha/PassKeeper/assets/93351227/ef29f5e0-f57d-495c-ad82-2158ff76355f" alt="Sign up screen" width="200"/>
 
 ### Sign in screens
 

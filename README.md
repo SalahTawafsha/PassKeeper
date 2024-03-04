@@ -10,6 +10,7 @@ database. It is a simple application that allows users to store their passwords 
 - Users can add, update, delete and view their passwords
 - Good user interface with comfortable user experience
 - User can generate passwords for his apps
+- password strength indicator
 - User can search for his passwords
 - User can copy his passwords to clipboard
 - If user forgets his password, he can reset it using his email
